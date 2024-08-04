@@ -2,6 +2,9 @@ import tkinter as TK
 from tkinter.colorchooser import askcolor
 
 
+#define Functions 
+
+
 def to_draw(event):
     global is_drawQuestionMark, b4_x, b4_y
     is_drawQuestionMark = True
@@ -18,6 +21,15 @@ def not_to_draw(event):
     global is_drawQuestionMark
     is_drawQuestionMark = False
 
+def change_color():
+    global draw_color
+    draw_color = askcolor()[1]
+    if color: # type: ignore
+        draw_color = color # type: ignore
+
+def change_pen_thickness(somethingx):
+    global line_width
+    line_width = int(somethingx)
 
 # Tkinter window making and core setup :> :) B) 8)
 
@@ -54,3 +66,9 @@ controls_ki_jagah.pack(side="top",fill="x")
 
 clear_button = TK.Button(controls_ki_jagah, text="Clear Canvas", command=lambda: canvas.delete("all"))
 clear_button.pack(side="left", padx=5, pady=5)
+
+Colorchange_button = TK.Button(controls_ki_jagah, text="Choose Color", command=change_color)
+Colorchange_button.pack(side="left", padx=5, pady=5)
+
+line_width_ka_text=TK.Label(controls_ki_jagah, text="Line Width")
+core.mainloop()
