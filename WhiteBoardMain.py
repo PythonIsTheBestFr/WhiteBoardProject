@@ -51,6 +51,11 @@ def change_background_color():
     if Color_Code:
         canvas.configure(background=Color_Code[1])
 
+# Defining a Fuction that Clears the Screen and Asks for Confirmation
+def clear_canvas():
+    confirmation = messagebox.askyesno("Confirmation,","Are you Sure you want to Clear the Canvas?")
+    if confirmation:
+        canvas.delete('all')
 
 
 
@@ -60,8 +65,8 @@ def change_background_color():
 #core or master or main or else
 core = TK.Tk()
 core.title("Whiteboard Prototype")
-core.geometry("800x1000")
-
+core.geometry("1000x700")
+secondarycore = TK.Toplevel()
 
 #making a canvas drawing area
 canvas = TK.Canvas(core, bg="white")
@@ -80,7 +85,7 @@ core.configure(bg='white')
 #making a jagah for all the controls like clear and clear and clear and idk more
 controls_ki_jagah = TK.Frame(core)# frame is a thing that holds things in a line
 
-clear_button = TK.Button(controls_ki_jagah,text="Clear Canvas", command=lambda: canvas.delete("all"))
+clear_button = TK.Button(controls_ki_jagah,text="Clear Canvas", command=clear_canvas)
                         #clear button definition
 
 

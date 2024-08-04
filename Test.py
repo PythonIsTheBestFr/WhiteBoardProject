@@ -3,7 +3,7 @@ from tkinter import messagebox
 
 def clear_canvas():
     # Function to clear the canvas contents after confirmation
-    result = messagebox.askyesno("Confirmation", "Do you really want to clear the canvas?")
+    result = messagebox.askyesno("Confirmation", "Are you Sure?")
     if result:  # If the user clicked 'Yes'
         canvas.delete("all")  # Delete all items from the canvas
 
