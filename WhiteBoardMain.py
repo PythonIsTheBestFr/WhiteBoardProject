@@ -71,4 +71,13 @@ Colorchange_button = TK.Button(controls_ki_jagah, text="Choose Color", command=c
 Colorchange_button.pack(side="left", padx=5, pady=5)
 
 line_width_ka_text=TK.Label(controls_ki_jagah, text="Line Width")
+line_width_ka_scale=TK.Scale(controls_ki_jagah, from_= 1, to=15, orient="horizontal", command=lambda val: change_pen_thickness(val))
+
+line_width_ka_text.pack(side = 'right', padx=5, pady=5)
+line_width_ka_scale.pack(side = 'right', padx=5, pady=5)
+
+
 core.mainloop()
+
+
+
