@@ -23,7 +23,7 @@ def draw(event):
     global is_drawQuestionMark, b4_x, b4_y
     if is_drawQuestionMark:
         rn_x, rn_y = event.x, event.y
-        canvas.create_line(b4_x, b4_y, rn_x, rn_y,fill=draw_color, width=line_width, capstyle=TK.ROUND, smooth=True)
+        canvas.create_line(b4_x, b4_y, rn_x, rn_y,fill=draw_color, width=line_width, capstyle=TK.ROUND,joinstyle="round", smooth=True)
         b4_x, b4_y = rn_x, rn_y
 
 #Defining a Functiong to Stop Drawing cus after i click i dont want it to keep drawing
@@ -58,7 +58,7 @@ def clear_canvas():
         canvas.delete('all')
 
 
-
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Tkinter window making and core setup :> :) B) 8)
 
@@ -66,7 +66,9 @@ def clear_canvas():
 core = TK.Tk()
 core.title("Whiteboard Prototype")
 core.geometry("1000x700")
-secondarycore = TK.Toplevel()
+secondarycore = TK.Toplevel() #<----------------------im stuck here cus idk how to use a image
+secondarycore.geometry('500x500')
+
 
 #making a canvas drawing area
 canvas = TK.Canvas(core, bg="white")
@@ -99,11 +101,12 @@ line_width_ka_text=TK.Label(controls_ki_jagah,
                             text="Line Width:")
                             # it is text that says 'Line Width:'
 line_width_ka_scale=TK.Scale(controls_ki_jagah, 
-                            from_= 1, to=15, 
+                            from_= 1, to=30,
+                            length=250, 
                             orient="horizontal", 
                             command=lambda val: change_pen_thickness(val))
 Background_Color_Button = TK.Button(controls_ki_jagah, 
-                                   text="Choose BackGround Color", 
+                                   text="Choose Backround Color", 
                                    command=change_background_color)
 
 
