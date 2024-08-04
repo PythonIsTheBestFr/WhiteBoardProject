@@ -1,15 +1,22 @@
 import tkinter as TK
 from tkinter.colorchooser import askcolor
+#importing Tkinter and Askcolor fuction from it
 
 
-#define Functions 
+#Defining Functions 
 
-
+#Defining a Fuction to Set Draw on which Takes an Event(in this case it is mouse press m1)
+#It sets is drawing var as true when mouse down
+#changes before(b4) coordinates(x, y) to event.x and event.y(mouse position at point of click)
 def to_draw(event):
     global is_drawQuestionMark, b4_x, b4_y
     is_drawQuestionMark = True
     b4_x, b4_y = event.x, event.y
 
+#Definig a Fuction to Draw the acctuall line it draws the line from before x to event x (mouse click position)
+#and before y to event y(mouse click position)
+#then it uses create_line fuction to draw the line use color as color var and width as width var capstyle as tk.round(will try to add more later)
+#and smooth = true because yes
 def draw(event):
     global is_drawQuestionMark, b4_x, b4_y
     if is_drawQuestionMark:
@@ -17,15 +24,16 @@ def draw(event):
         canvas.create_line(b4_x, b4_y, rn_x, rn_y,fill=draw_color, width=line_width, capstyle=TK.ROUND, smooth=True)
         b4_x, b4_y = rn_x, rn_y
 
+#Defining a Functiong to Stop Drawing cus after i click i dont want it to keep drawing
+#not much to explain it just sets a var as false
 def not_to_draw(event):
     global is_drawQuestionMark
     is_drawQuestionMark = False
 
+#Defining a Fuction to use Tkinter's inbuilt color asked askcolor()[1]<-- the 1 means how many values in this case 1 value
 def change_color():
     global draw_color
     draw_color = askcolor()[1]
-    if color: # type: ignore
-        draw_color = color # type: ignore
 
 def change_pen_thickness(somethingx):
     global line_width
@@ -33,48 +41,61 @@ def change_pen_thickness(somethingx):
 
 # Tkinter window making and core setup :> :) B) 8)
 
+#core or master or main or else
 core = TK.Tk()
 core.title("Whiteboard Prototype")
+core.geometry("800x600")
 
+
+#making a canvas drawing area
 canvas = TK.Canvas(core, bg="white")
 canvas.pack(fill="both", expand=True)
+#Taking Fuctions and using them
+canvas.bind("<Button-1>", to_draw)
+canvas.bind("<B1-Motion>", draw)
+canvas.bind("<ButtonRelease-1>", not_to_draw)
 
 #program Defaults Values
 line_width = 2
 draw_color = 'black'
 is_drawQuestionMark = False
 
-#window size
-
-core.geometry("800x600")
-
-#activating the functions with keys(i googled this hehe)
-
-canvas.bind("<Button-1>", to_draw)
-canvas.bind("<B1-Motion>", draw)
-canvas.bind("<ButtonRelease-1>", not_to_draw)
-
-
-
-
-#im gonna add some fuctions but im just gonna copy most :>
-
+#styling and Pakaging
 #making a jagah for all the controls like clear and clear and clear and idk more
 
-controls_ki_jagah = TK.Frame(core)
-controls_ki_jagah.pack(side="top",fill="x")
+controls_ki_jagah = TK.Frame(core)# frame is a thing that holds things in a line
 
-clear_button = TK.Button(controls_ki_jagah, text="Clear Canvas", command=lambda: canvas.delete("all"))
-clear_button.pack(side="left", padx=5, pady=5)
+clear_button = TK.Button(controls_ki_jagah,
+                        text="Clear Canvas", 
+                        command=lambda: canvas.delete("all"))
+                        #clear button definition
 
-Colorchange_button = TK.Button(controls_ki_jagah, text="Choose Color", command=change_color)
-Colorchange_button.pack(side="left", padx=5, pady=5)
 
-line_width_ka_text=TK.Label(controls_ki_jagah, text="Line Width")
-line_width_ka_scale=TK.Scale(controls_ki_jagah, from_= 1, to=15, orient="horizontal", command=lambda val: change_pen_thickness(val))
+Colorchange_button = TK.Button(controls_ki_jagah, 
+                               text="Choose Color", 
+                               command=change_color)
+                               #buttan 4 colar change
 
-line_width_ka_text.pack(side = 'right', padx=5, pady=5)
-line_width_ka_scale.pack(side = 'right', padx=5, pady=5)
+
+line_width_ka_text=TK.Label(controls_ki_jagah, 
+                            text="Line Width:")
+                            # it is text that says 'Line Width:'
+line_width_ka_scale=TK.Scale(controls_ki_jagah, 
+                            from_= 1, to=15, 
+                            orient="horizontal", 
+                            command=lambda val: change_pen_thickness(val))
+
+
+#packing everything
+controls_ki_jagah.pack(side="top",fill="x")#jagah banaraha hai
+
+clear_button.pack(side="left", padx=5, pady=5)#clear karna ki button to pack kar raha hai
+
+Colorchange_button.pack(side="left", padx=5, pady=5)# color change ki button to pack kar raha hai
+
+line_width_ka_text.pack(side = 'right', padx=5, pady=5)# line width ka text to pack kar raha hai
+
+line_width_ka_scale.pack(side = 'right', padx=5, pady=5)# line width ka Slider to pack kar raha hai
 
 
 core.mainloop()
