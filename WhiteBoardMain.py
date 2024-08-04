@@ -1,5 +1,7 @@
 import tkinter as TK
 from tkinter.colorchooser import askcolor
+from tkinter import colorchooser as coch
+from tkinter import messagebox
 #importing Tkinter and Askcolor fuction from it
 
 
@@ -34,17 +36,31 @@ def not_to_draw(event):
 def change_color():
     global draw_color
     draw_color = askcolor()[1]
+    print('Pen Color Set to',draw_color[1],'hexadecimal.')
 
+#defining a fuction to change Pen Width
 def change_pen_thickness(somethingx):
     global line_width
     line_width = int(somethingx)
+
+#Defining a Fuction to Change to change baground color
+def change_background_color():
+
+    Color_Code = coch.askcolor(title='Choose a Background Color')
+    print('Background Color Set to',Color_Code[1],'hexadecimal.')
+    if Color_Code:
+        canvas.configure(background=Color_Code[1])
+
+
+
+
 
 # Tkinter window making and core setup :> :) B) 8)
 
 #core or master or main or else
 core = TK.Tk()
 core.title("Whiteboard Prototype")
-core.geometry("800x600")
+core.geometry("800x1000")
 
 
 #making a canvas drawing area
@@ -59,15 +75,12 @@ canvas.bind("<ButtonRelease-1>", not_to_draw)
 line_width = 2
 draw_color = 'black'
 is_drawQuestionMark = False
-
+core.configure(bg='white')
 #styling and Pakaging
 #making a jagah for all the controls like clear and clear and clear and idk more
-
 controls_ki_jagah = TK.Frame(core)# frame is a thing that holds things in a line
 
-clear_button = TK.Button(controls_ki_jagah,
-                        text="Clear Canvas", 
-                        command=lambda: canvas.delete("all"))
+clear_button = TK.Button(controls_ki_jagah,text="Clear Canvas", command=lambda: canvas.delete("all"))
                         #clear button definition
 
 
@@ -84,6 +97,9 @@ line_width_ka_scale=TK.Scale(controls_ki_jagah,
                             from_= 1, to=15, 
                             orient="horizontal", 
                             command=lambda val: change_pen_thickness(val))
+Background_Color_Button = TK.Button(controls_ki_jagah, 
+                                   text="Choose BackGround Color", 
+                                   command=change_background_color)
 
 
 #packing everything
@@ -93,9 +109,11 @@ clear_button.pack(side="left", padx=5, pady=5)#clear karna ki button to pack kar
 
 Colorchange_button.pack(side="left", padx=5, pady=5)# color change ki button to pack kar raha hai
 
+line_width_ka_scale.pack(side = 'right', padx=5, pady=5)# line width ka Slider to pack kar raha hai
+
 line_width_ka_text.pack(side = 'right', padx=5, pady=5)# line width ka text to pack kar raha hai
 
-line_width_ka_scale.pack(side = 'right', padx=5, pady=5)# line width ka Slider to pack kar raha hai
+Background_Color_Button.pack(side='left', padx=5, pady=5)
 
 
 core.mainloop()
