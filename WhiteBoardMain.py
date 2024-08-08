@@ -57,6 +57,12 @@ def clear_canvas():
     if confirmation:
         canvas.delete('all')
 
+# Defining a Fuction to Add Text Entry in Canvas
+def add_text_entry(event):
+    text = TK.askstring("Input", "Enter text:")
+    if text:
+        canvas.create_text(event.x, event.y, text=text, fill=draw_color, font=("Arial", line_width * 2))
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -108,6 +114,9 @@ line_width_ka_scale=TK.Scale(controls_ki_jagah,
 Background_Color_Button = TK.Button(controls_ki_jagah, 
                                    text="Choose Backround Color", 
                                    command=change_background_color)
+add_text_entry_Button = TK.Button(controls_ki_jagah, 
+                                   text="Add Text", 
+                                   command=add_text_entry)
 
 
 #packing everything
@@ -122,6 +131,8 @@ line_width_ka_scale.pack(side = 'right', padx=5, pady=5)# line width ka Slider t
 line_width_ka_text.pack(side = 'right', padx=5, pady=5)# line width ka text to pack kar raha hai
 
 Background_Color_Button.pack(side='left', padx=5, pady=5)
+
+add_text_entry_Button.pack(side="right", pady=5, padx=5)
 
 
 core.mainloop()
