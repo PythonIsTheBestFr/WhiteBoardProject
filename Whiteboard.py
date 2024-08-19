@@ -29,7 +29,7 @@ def draw(event):
         rn_x, rn_y = event.x, event.y
         if is_erasing:
             color = canvas['bg']
-            width = eraser_thickness
+            width = eraser_thickness*3      
         else:
             color = draw_color
             width = line_width
@@ -140,7 +140,7 @@ def on_mouse_wheel(event):
 # Tkinter window setup
 core = TK.Tk()
 core.title("Whiteboard")
-core.geometry("1000x700")\
+core.geometry("1000x700")
 
 # Define Fonts
 fonts = ["Arial", "Courier", "Helvetica", "Times New Roman", "Verdana"]

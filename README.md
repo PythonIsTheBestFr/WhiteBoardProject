@@ -9,7 +9,7 @@ This is a simple whiteboard application built using Python's Tkinter library. It
 - **Change Pen Thickness:** Adjust the thickness of the drawing pen using a slider.
 - **Change Background Color:** Set the background color of the canvas.
 - **Add Text:** Click on the canvas to add custom text.(The text scales to Pen Thickness)
-- **Undo & Redo:** Undo the last action or redo an undone action.(Need to Spam. Decided to Keep for Finer Undo & Redo)
+- **Undo & Redo:** Undo the last action or redo an undone action.(Use Mouse Scroll Wheel)
 - **Clear Canvas:** Clear all drawings on the canvas with a confirmation prompt.
 
 ## Installation
